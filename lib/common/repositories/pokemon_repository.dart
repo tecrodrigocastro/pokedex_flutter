@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pokedex_flutter/common/consts/api_consts.dart';
+import 'package:pokedex_flutter/common/error/failure.dart';
 import 'package:pokedex_flutter/common/models/pokemon.dart';
 
 abstract class IPokemonRepository {
@@ -11,10 +15,15 @@ class PokemonRepository implements IPokemonRepository {
 
   PokemonRepository({required this.dio});
   @override
-  Future<List<Pokemon>> getAllPokemons() {
+  Future<List<Pokemon>> getAllPokemons() async {
     try {
-      dio.get(Path())
+      final response = await dio.get(ApiConsts.allPokemonsURL);
+      final json = jsonDecode(response.data) as Map<String, dynamic>;
+      final list = json['pokemon'] as List<dynamic>;
+      return list.map((e) => Pokemon.fromMap(e)).toList();
+
     } catch (e) {
+      throw Failure(message: 'Não foi possivel carregar os dados');
     }
   }
 }

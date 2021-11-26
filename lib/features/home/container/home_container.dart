@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/common/error/failure.dart';
 import 'package:pokedex_flutter/common/models/pokemon.dart';
 import 'package:pokedex_flutter/common/repositories/pokemon_repository.dart';
 import 'package:pokedex_flutter/features/home/pages/home_error.dart';
@@ -23,7 +24,9 @@ class HomeContainer extends StatelessWidget {
           }
 
           if (snapshot.hasError) {
-            return HomeError(error: snapshot.error.toString());
+            return HomeError(
+              error: (snapshot.error as Failure).message!
+              );
           }
 
           return Container();
