@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:pokedex_flutter/common/consts/api_consts.dart';
 import 'package:pokedex_flutter/common/error/failure.dart';
 import 'package:pokedex_flutter/common/models/pokemon.dart';

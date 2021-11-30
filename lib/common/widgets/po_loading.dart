@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class HomeLoading extends StatelessWidget {
-  const HomeLoading({ Key? key }) : super(key: key);
+class PoLoading extends StatelessWidget {
+  const PoLoading({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Center( 
         child: CircularProgressIndicator(),
       ),
     );
